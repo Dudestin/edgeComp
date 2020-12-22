@@ -1,0 +1,106 @@
+
+Kernel topology "bisenetv2_agg_kernel_graph.jpg" for network "bisenetv2_agg"
+kernel list info for network "bisenetv2_agg"
+                               Kernel ID : Name
+                                       0 : bisenetv2_agg
+
+                             Kernel Name : bisenetv2_agg
+--------------------------------------------------------------------------------
+                             Kernel Type : DPUKernel
+                               Code Size : 0.03MB
+                              Param Size : 0.11MB
+                           Workload MACs : 2081.09MOPS
+                         IO Memory Space : 2.25MB
+                              Mean Value : 0, 0, 0, 
+                      Total Tensor Count : 4
+                Boundary Input Tensor(s)   (H*W*C)
+BiseNetV2_aggregation_branch_guided_aggregation_block_aggregation_features_fused_features:0(0) : 76*121*64
+
+               Boundary Output Tensor(s)   (H*W*C)
+BiseNetV2_logits_1x1_conv_block_Conv2D:0(0) : 76*121*20
+
+                        Total Node Count : 3
+                           Input Node(s)   (H*W*C)
+BiseNetV2_aggregation_branch_guided_aggregation_block_aggregation_features_aggregation_feature_output_conv_Conv2D(0) : 76*121*64
+
+                          Output Node(s)   (H*W*C)
+BiseNetV2_logits_1x1_conv_block_Conv2D(0) : 76*121*20
+
+
+
+
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************
+
+Kernel topology "bisenetv2_sem_kernel_graph.jpg" for network "bisenetv2_sem"
+kernel list info for network "bisenetv2_sem"
+                               Kernel ID : Name
+                                       0 : bisenetv2_sem
+
+                             Kernel Name : bisenetv2_sem
+--------------------------------------------------------------------------------
+                             Kernel Type : DPUKernel
+                               Code Size : 0.22MB
+                              Param Size : 0.84MB
+                           Workload MACs : 2429.84MOPS
+                         IO Memory Space : 5.05MB
+                              Mean Value : 0, 0, 0, 
+                      Total Tensor Count : 39
+                Boundary Input Tensor(s)   (H*W*C)
+                       input_tensor:0(0) : 608*968*3
+
+               Boundary Output Tensor(s)   (H*W*C)
+BiseNetV2_aggregation_branch_guided_aggregation_block_semantic_branch_3x3_conv_block_conv_Conv2D:0(0) : 19*31*64
+BiseNetV2_aggregation_branch_guided_aggregation_block_semantic_branch_1x1_conv_block_Conv2D:0(1) : 19*31*64
+
+                        Total Node Count : 35
+                           Input Node(s)   (H*W*C)
+BiseNetV2_semantic_branch_stage_1_se_block_1_repeat_1_stem_block_conv_block_1_conv_Conv2D(0) : 608*968*3
+
+                          Output Node(s)   (H*W*C)
+BiseNetV2_aggregation_branch_guided_aggregation_block_semantic_branch_3x3_conv_block_conv_Conv2D(0) : 19*31*64
+BiseNetV2_aggregation_branch_guided_aggregation_block_semantic_branch_1x1_conv_block_Conv2D(0) : 19*31*64
+
+
+
+
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************
+
+Kernel topology "bisenetv2_det_kernel_graph.jpg" for network "bisenetv2_det"
+kernel list info for network "bisenetv2_det"
+                               Kernel ID : Name
+                                       0 : bisenetv2_det
+
+                             Kernel Name : bisenetv2_det
+--------------------------------------------------------------------------------
+                             Kernel Type : DPUKernel
+                               Code Size : 0.26MB
+                              Param Size : 0.16MB
+                           Workload MACs : 6952.11MOPS
+                         IO Memory Space : 10.66MB
+                              Mean Value : 0, 0, 0, 
+                      Total Tensor Count : 12
+                Boundary Input Tensor(s)   (H*W*C)
+                       input_tensor:0(0) : 608*968*3
+
+               Boundary Output Tensor(s)   (H*W*C)
+BiseNetV2_aggregation_branch_guided_aggregation_block_detail_branch_avg_pooling_block:0(0) : 19*31*64
+BiseNetV2_aggregation_branch_guided_aggregation_block_detail_branch_1x1_conv_block_Conv2D:0(1) : 76*121*64
+
+                        Total Node Count : 10
+                           Input Node(s)   (H*W*C)
+BiseNetV2_detail_branch_stage_1_conv_block_1_repeat_1_3x3_conv_conv_Conv2D(0) : 608*968*3
+
+                          Output Node(s)   (H*W*C)
+BiseNetV2_aggregation_branch_guided_aggregation_block_detail_branch_3x3_conv_block_conv_Conv2D(0) : 19*31*64
+BiseNetV2_aggregation_branch_guided_aggregation_block_detail_branch_1x1_conv_block_Conv2D(0) : 76*121*64
+
+
+
+
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************
