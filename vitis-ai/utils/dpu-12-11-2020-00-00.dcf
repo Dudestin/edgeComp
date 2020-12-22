@@ -1,0 +1,5 @@
+ˆƒ(À0€8@HP
+X
+ €€ €"+
+0"(:*02:*²
+¯Number of DPU Cores:2;Arch of DPU:B800;RAM Usage:High;Channel Augmentation:Disabled;DepthWiseConv:Enabled;AveragePool:Enabled;ReLU Type:ReLU + ReLU6;Number of SFM cores:1;S-AXI Clock Mode:Independent;dpu_2x Clock Gating:Disabled;DSP48 Maximal Cascade Length:4;DSP48 Usage:High;Ultra-RAM Use per DPU:66;Enable timestamp auto-update:Enabled;Target Version:1.4.0;AXI Protocol:AXI4;S-AXI Data Width:32;M-AXI GP Data Width:32;M-AXI HP Data Width (DPU):128;M-AXI HP Data Width (SFM):128;M-AXI ID Width:2;DSP Slice Count:328;Ultra-RAM Count:92.0;Block-RAM Count:16.0
