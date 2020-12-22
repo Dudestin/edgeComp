@@ -1,0 +1,10 @@
+{
+    "lib": "libvart-dpu-runner.so",
+    "filename": "deploy.xmodel",
+    "kernel": [
+        "subgraph_BiseNetV2\/aggregation_branch\/guided_aggregation_block\/semantic_branch\/1x1_conv_block\/Conv2D",
+        "subgraph_BiseNetV2\/aggregation_branch\/guided_aggregation_block\/detail_branch\/1x1_conv_block\/Conv2D",
+        "subgraph_BiseNetV2\/aggregation_branch\/guided_aggregation_block\/aggregation_features\/aggregation_feature_output\/conv\/Conv2D"
+    ],
+    "target": "DPUCZDX8G_ISA0_B4096_MAX_BG2"
+}
