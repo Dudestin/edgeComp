@@ -22,3 +22,28 @@ typedef unsigned short hfloat;
             exit(1); \
         } \
     }
+
+#define GL_GET_ERROR \
+	{ \
+		GLenum code = glGetError(); \
+		if (code != GL_NO_ERROR) { \
+			std::cerr << "GL_GET_ERROR_OCCUR!!" << std::endl; \
+			switch (code) { \
+				case GL_INVALID_ENUM: \
+					std::cerr << "GL_INVALID_ENUM" << std::endl; \
+					break; \
+				case GL_INVALID_VALUE: \
+					std::cerr << "GL_INVALID_VALUE" << std::endl; \
+					break; \
+				case GL_INVALID_OPERATION: \
+					std::cerr << "GL_INVALID_OPERATION" << std::endl; \
+					break; \
+				case GL_OUT_OF_MEMORY: \
+					std::cerr << "GL_OUT_OF_MEMORY" << std::endl; \
+					break; \
+				default: \
+					std::cerr << "GL_UNKNOWN_ERROR" << std::endl; \
+			} \
+			exit(1); \
+		} \
+	}

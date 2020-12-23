@@ -12,7 +12,7 @@
 #include <iostream>
 #include <unistd.h>
 
-constexpr GLuint texSize = 32;
+constexpr GLuint texSize = 4;
 constexpr unsigned int uiWidth = texSize;
 constexpr unsigned int uiHeight = texSize;
 constexpr GLuint texElementSize = 4 * texSize * texSize;
@@ -145,7 +145,7 @@ int main(void) {
 		exit(EXIT_FAILURE);
 	}
 	
-	Window xwindow = XCreateSimpleWindow(xdisplay, DefaultRootWindow(xdisplay), 100, 100, 640, 480, 1, BlackPixel(xdisplay, 0), WhitePixel(xdisplay, 0));
+	Window xwindow = XCreateSimpleWindow(xdisplay, DefaultRootWindow(xdisplay), 0, 0, 10, 10, 1, BlackPixel(xdisplay, 0), WhitePixel(xdisplay, 0));
 	XMapWindow(xdisplay, xwindow);
 
 	EGLDisplay display = nullptr;
@@ -157,14 +157,48 @@ int main(void) {
 		std::cerr << "Error initializeEGL." << std::endl;
 		exit(EXIT_FAILURE);
 	}
+	
 
 	// create program obj
-	    // create program obj
+    // create program obj
     auto shaderMng = std::make_unique<shaderManager>(vtxsource, flgsource);
     shaderMng->useProgram();
     auto glslProgram = (shaderMng->glslProgram);
 
-    // create FBO
+
+    GLuint framebuffer, depthRenderbuffer;
+    GLuint texture;
+    GLint texHeight = 4;
+    GLint texWidth = 4;
+    glGenFramebuffers(1, &framebuffer);
+    glGenRenderbuffers(1, &depthRenderbuffer);
+    glGenTextures(1, &texture);
+
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight,
+		    0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, texWidth, texHeight);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
+
+    auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    if (status == GL_FRAMEBUFFER_COMPLETE)
+    {
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    } else {
+	std::cerr << "kusoga" << std::endl;
+    }
+
+    // create FBO;
     auto FBOMng = std::make_unique<fboManager>(uiWidth, uiHeight);
     fboManager::checkCurrentFBOStatus(); // check status
 
